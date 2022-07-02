@@ -22,7 +22,6 @@ public abstract class AbstractTemplate<T> {
 
             trace.end(status);
             return result;
-
         } catch (Exception e) {
             trace.exception(status, e);
             throw e;
