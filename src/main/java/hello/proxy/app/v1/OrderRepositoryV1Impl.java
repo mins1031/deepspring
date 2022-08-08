@@ -4,7 +4,6 @@ public class OrderRepositoryV1Impl implements OrderRepositoryV1 {
 
     @Override
     public void save(String itemId) {
-        System.out.println("repo");
         if (itemId.equals("ex")) {
             throw new IllegalStateException("예외 발생");
         }

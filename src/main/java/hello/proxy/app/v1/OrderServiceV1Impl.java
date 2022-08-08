@@ -10,7 +10,6 @@ public class OrderServiceV1Impl implements OrderServiceV1 {
 
     @Override
     public void orderItem(String itemId) {
-        System.out.println("service");
         orderRepository.save(itemId);
     }
 }
