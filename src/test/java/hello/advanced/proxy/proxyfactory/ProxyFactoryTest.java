@@ -31,6 +31,21 @@ public class ProxyFactoryTest {
         Assertions.assertThat(AopUtils.isCglibProxy(proxy)).isFalse();
     }
 
+    @DisplayName("인터페이스가 있으면 JDK 동적프록시 사용2")
+    @Test
+    void interfaceProxy2() {
+        ServiceInterface target = new ServiceImpl();
+        ProxyFactory proxyFactory = new ProxyFactory(target);
+        proxyFactory.addAdvice(new TimeAdvice());
+        ServiceInterface proxy = (ServiceInterface) proxyFactory.getProxy();
+
+        ProxyFactory proxyFactory2 = new ProxyFactory(proxy);
+        proxyFactory2.addAdvice(new TimeAdvice());
+        ServiceInterface proxy2 = (ServiceInterface) proxyFactory.getProxy();
+
+        proxy2.save();
+    }
+
     @DisplayName("구체클래스만 있으면 CGLIB 사용")
     @Test
     void concreteProxy() {

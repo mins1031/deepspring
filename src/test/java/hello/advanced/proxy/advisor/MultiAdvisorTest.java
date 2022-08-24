@@ -30,12 +30,34 @@ public class MultiAdvisorTest {
         //프록시2 생성
         ProxyFactory proxyFactory2 = new ProxyFactory(proxy1);
         DefaultPointcutAdvisor advisor2 = new DefaultPointcutAdvisor(Pointcut.TRUE, new Advice2());
-        proxyFactory1.addAdvisor(advisor2);
+        proxyFactory2.addAdvisor(advisor2);
+        ServiceInterface proxy2 = (ServiceInterface) proxyFactory2.getProxy();
 
-        proxy1.save();
-        proxy1.find();
+        proxy2.save();
+        //결국 위 과정은 여러개의 프록시 로직(advice)을 앞에서 실행하고 본로직(save())을 실행하기 위한 과정이라고 생각하면 될듯?
+        //if save 실행전 시간계산 로직과 로그 저장 로직이 있어야할때 로그 저장을 == Advice2 , 시간 계산을 == Advice1 위 로직들을 먼저 실행후 본 로직인 target의 save 메서드 내용을 수행하게 되는 과정.
     }
 
+    @DisplayName("하나의 프록시, 여러 어드바이저")
+    @Test
+    void multiAdvisorTest2() {
+        //client -> proxy -> advisor2 -> advisor1 -> target
+
+        DefaultPointcutAdvisor advisor1 = new DefaultPointcutAdvisor(Pointcut.TRUE, new Advice1());
+        DefaultPointcutAdvisor advisor2 = new DefaultPointcutAdvisor(Pointcut.TRUE, new Advice2());
+
+        //프록시1 생성
+        ServiceInterface target = new ServiceImpl();
+        ProxyFactory proxyFactory = new ProxyFactory(target);
+        proxyFactory.addAdvisor(advisor2);
+        proxyFactory.addAdvisor(advisor1);
+        ServiceInterface proxy = (ServiceInterface) proxyFactory.getProxy();
+
+        proxy.save();
+
+        //위 내용은 하나의 프록시와 여러 어드바이저를 통해 어드바이저 별로 프록시를 생성해서 사용하지 않고 하나의 프록시를 통해 여러 어드바이저의 내용을 수행하는 것을 보여준다
+        //결국 1. 하나의 클래스를 팩토리에 등록시킨다 -> 2. 여러 어드바이저를 등록 -> 3. 각 어드바이저 포인트컷에 따라 같이 등록된 어드바이스가 실행될지 말지 결정 (어드바이저 등록 순서대로 진행)
+    }
     @Slf4j
     static class Advice1 implements MethodInterceptor {
 
