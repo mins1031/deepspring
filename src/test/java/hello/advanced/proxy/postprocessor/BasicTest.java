@@ -2,6 +2,7 @@ package hello.advanced.proxy.postprocessor;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -43,5 +44,15 @@ public class BasicTest {
         public void helloB() {
             log.info("hello B");
         }
+    }
+
+    @DisplayName("키보드용 테스트 코드")
+    @Test
+    void name() {
+        System.out.println("새로운 키보드 사용 기념 테스트 코드");
+        int a = 10;
+        int b = 20;
+        System.out.println(a*b);
+
     }
 }
