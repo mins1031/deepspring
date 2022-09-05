@@ -10,7 +10,7 @@ import org.aspectj.lang.annotation.Aspect;
 import java.lang.reflect.Method;
 
 @Slf4j
-@Aspect // 어드바이저를 편리하게 어노테이션으로 만들어준것이라고 이d
+@Aspect // 어드바이저를 편리하게 어노테이션으로 만들어준것이라고 이해
 public class LogTraceAspect {
 
     private LogTrace logTrace;
