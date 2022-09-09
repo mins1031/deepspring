@@ -1,4 +1,4 @@
-package hello.advanced.aop;
+package hello.aop.order.aop;
 
 import hello.aop.order.OrderRepository;
 import hello.aop.order.OrderService;
@@ -13,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 
 @Slf4j
-@SpringBootTest
+@SpringBootTest()
 @Import(AspectV1.class)
 public class AopTest {
 
