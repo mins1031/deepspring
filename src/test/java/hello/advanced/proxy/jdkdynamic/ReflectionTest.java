@@ -2,6 +2,7 @@ package hello.advanced.proxy.jdkdynamic;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import org.springframework.stereotype.Service;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -11,7 +12,7 @@ public class ReflectionTest {
 
     @Slf4j
     static class Hello {
-        public String callA() {
+        public String callA(int test) {
             log.info("A");
             return "A";
         }
@@ -28,7 +29,7 @@ public class ReflectionTest {
 
         //공통 로직1 시작
         log.info("start");
-        String result1 = target.callA();
+        String result1 = target.callA(2);
         log.info("result={}",result1);
         //공통 로직1 종료
 

@@ -11,9 +11,13 @@ public class ProxyPatternTest {
     void noProxyTest() {
         RealSubject realSubject = new RealSubject();
         ProxyPatternClient proxyPatternClient = new ProxyPatternClient(realSubject);
+
+        long startTime = System.currentTimeMillis();
         proxyPatternClient.execute();
         proxyPatternClient.execute();
         proxyPatternClient.execute();
+        long endTime = System.currentTimeMillis();
+        System.out.println(endTime - startTime);
     }
 
     @Test
@@ -21,8 +25,12 @@ public class ProxyPatternTest {
         RealSubject realSubject = new RealSubject();
         CacheProxy cacheProxy = new CacheProxy(realSubject);
         ProxyPatternClient client = new ProxyPatternClient(cacheProxy);
+
+        long startTime = System.currentTimeMillis();
         client.execute();
         client.execute();
         client.execute();
+        long endTime = System.currentTimeMillis();
+        System.out.println(endTime - startTime);
     }
 }
