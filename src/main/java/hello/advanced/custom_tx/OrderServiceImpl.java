@@ -1,11 +1,11 @@
-package hello.custom_tx;
+package hello.advanced.custom_tx;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class AOrderServiceImpl implements AOrderService {
+public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order get() {

@@ -1,4 +1,4 @@
-package hello.custom_tx;
+package hello.advanced.custom_tx;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
