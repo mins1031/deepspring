@@ -7,5 +7,6 @@ public interface OrderService {
     @CustomTransactional
     void save();
 
+    @CustomTransactional
     void update();
 }

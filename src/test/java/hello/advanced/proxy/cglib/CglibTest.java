@@ -23,3 +23,7 @@ public class CglibTest {
         proxy.call();
     }
 }
+
+
+
+

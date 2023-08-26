@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.lang.reflect.Proxy;
@@ -23,5 +24,20 @@ class orderServiceImplTest {
         orderService.update();
 
         orderService.get();
+    }
+
+    @Test
+    public void name() {
+        ConcreteOrderService orderServiceImpl = new ConcreteOrderService();
+
+        CustomTxMethodInterceptor customTxMethodInterceptor = new CustomTxMethodInterceptor(orderServiceImpl);
+        Enhancer enhancer = new Enhancer();
+        enhancer.setSuperclass(ConcreteOrderService.class);
+        enhancer.setCallback(customTxMethodInterceptor);
+
+        ConcreteOrderService concreteOrderService = (ConcreteOrderService) enhancer.create();
+        concreteOrderService.save();
+        concreteOrderService.get();
+        concreteOrderService.update();
     }
 }
