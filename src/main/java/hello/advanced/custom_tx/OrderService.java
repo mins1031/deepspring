@@ -9,4 +9,7 @@ public interface OrderService {
 
     @CustomTransactional
     void update();
+
+    @CustomTransactional
+    void error();
 }

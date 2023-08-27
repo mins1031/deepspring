@@ -22,7 +22,7 @@ public class ConcreteOrderService {
     }
 
     @CustomTransactional
-    public void throwException() {
+    public void error() {
         log.info("throw exception!");
         throw new RuntimeException();
     }

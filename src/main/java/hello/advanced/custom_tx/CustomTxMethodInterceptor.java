@@ -28,14 +28,6 @@ public class CustomTxMethodInterceptor implements MethodInterceptor {
         if (customTransactional != null) {
             log.info("start transaction");
             try {
-//                if (method.getReturnType().equals(void.class)) {
-//                    invoke = methodProxy.invoke(targetObject, args);
-//                }
-
-                //리턴타입 적용은 조금더 찾아볼것.
-//                Class<?> returnType = method.getReturnType();
-//                returnType.getName();
-
                 invoke = methodProxy.invoke(targetObject, args);
             } catch (Exception e) {
                 log.info("rollback");

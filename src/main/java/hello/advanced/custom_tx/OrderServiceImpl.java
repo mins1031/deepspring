@@ -13,15 +13,19 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    @CustomTransactional
     public void save() {
         log.info("service save!");
 
     }
 
     @Override
-    @CustomTransactional
     public void update() {
         log.info("service update!");
+    }
+
+    @Override
+    public void error() {
+        log.info("error!");
+        throw new RuntimeException();
     }
 }

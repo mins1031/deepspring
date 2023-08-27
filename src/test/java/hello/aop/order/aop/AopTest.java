@@ -1,5 +1,6 @@
 package hello.aop.order.aop;
 
+import hello.aop.order.BookInterface;
 import hello.aop.order.OrderRepository;
 import hello.aop.order.OrderService;
 import hello.aop.order.aop.AspectV1;
@@ -23,6 +24,8 @@ public class AopTest {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private BookInterface bookInterface;
 
     @Test
     void aopInfo() {

@@ -24,6 +24,6 @@ public class TxMain {
         proxyingConcreteOrderService.save();
         proxyingConcreteOrderService.get();
         proxyingConcreteOrderService.update();
-        proxyingConcreteOrderService.throwException();
+        proxyingConcreteOrderService.error();
     }
 }
